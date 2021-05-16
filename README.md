@@ -2,17 +2,24 @@
 
 [night.js](https://github.com/jb1905/night.js) 와 [darkmode.js](https://github.com/sandoche/Darkmode.js) 를 조합해서 만든 장소와 시간(sunrise, sunset)에 따라 다크모드로 변경하기
 
+## 테스트해 보기
+```
+git clone https://github.com/jakekwak/Night2.js
+yarn
+yarn build
+yarn serve
+```
 
-## Getting Started
+## 시작하기
 **Connect using script tag in HTML:**
 ```html
-<script src="../lib/night2.js"></script>
+<script src="./night2.min.js"></script>
 ```
 
 **&bull; Vanilla JavaScript e.g:**
 ```js
       const night = new Night({
-        defaultId: 'darkmode',
+        divId: 'darkmode',
         lightClass: 'light',
         darkClass: 'dark',
         auto: true,
@@ -52,6 +59,7 @@ night.reset();
 ## Options
 Name | Type | Default | Description | Available options
 -|-|-|-|-
+**divId** | string | `darkmode ` | 모드 클래스를 넣기 위한 div id | Name of the id
 **lightClass** | string | ` ` | Class added to ID when light mode is active | Name of the class
 **darkClass** | string | `dark` | Class added to ID when dark mode is active | Name of the class
 **cache** | boolean | `true` | Cache location coordinates in local storage for one day | `true` (enable), `false` (disable)
@@ -69,3 +77,9 @@ Name | Type | Default | Description | Available options
 `smartDark` event will output sun position times and user geolocation latitude & longitude
 
 `smartDarkError` event will output message when permission to geolocation is denied
+
+## 이슈와 풀리퀘스트
+
+[이슈](https://github.com/jakekwak/Night2.js/issues) 는 여기로..
+
+[풀리퀘스트](https://github.com/jakekwak/Night2.js/pulls) 는 dev 브랜치로

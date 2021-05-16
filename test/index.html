@@ -19,15 +19,15 @@
       <div id="myDarkmode" class="container">
         <h1>다크모드 테스트</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
-          et dolore magna aliqua. Massa tempor nec feugiat nisl pretium. In iaculis nunc sed augue lacus
-          viverra vitae congue eu. At tellus at urna condimentum mattis pellentesque id nibh. Pretium aenean
-          pharetra magna ac placerat vestibulum. Integer enim neque volutpat ac tincidunt vitae semper. Dictum
-          sit amet justo donec enim diam vulputate ut. Ut tellus elementum sagittis vitae et leo duis. Vitae
-          sapien pellentesque habitant morbi. Pellentesque diam volutpat commodo sed egestas egestas
-          fringilla. A arcu cursus vitae congue mauris rhoncus aenean vel elit. Potenti nullam ac tortor vitae
-          purus faucibus ornare suspendisse sed.
+          스크립트에서 <code>auto: true</code>로 설정하면 자동으로 변경됩니다. 2개의 setInterval이 1000ms로
+          돌면서 시간과 로케이션을 체크합니다.
         </p>
+        <p> 강제로 <strong>다크모드/라이트모드</strong>로 변경했을 때에 동작이 되어야 되고. </p>
+        <p>
+          <code>auto: false</code>로 설정한 상태에서 <code>auto()</code>를 불렀을 때 제대로 동작해야 되고
+        </p>
+        <p>여러가지 체크할 부분이 많이 있습니다.</p>
+        <p>테스트후에 이슈는 이슈에 개선사항을 깃헙 dev 브랜치에 올려주세요</p>
         <button onClick="night.toggle()">Toggle</button>
         <button onClick="night.dark()">Dark</button>
         <button onClick="night.light()">Light</button>

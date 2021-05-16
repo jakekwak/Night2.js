@@ -174,8 +174,9 @@ export default class Night2 {
 
     const newSettings = {};
 
+    /* eslint-disable */
     for (const property in defaultSettings) {
-      // eslint-disable-line no-unused-vars
+      /* eslint-enable */
       if (property in settings) newSettings[property] = settings[property];
       else newSettings[property] = defaultSettings[property];
     }

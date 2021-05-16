@@ -21,7 +21,7 @@ const config = {
   entry: __dirname + '/src/index.js',
   devtool: mode === 'production' ? false : 'inline-source-map',
   output: {
-    path: __dirname + '/lib',
+    path: __dirname + '/test',
     filename: outputFile,
     library: libraryName,
     libraryTarget: 'umd',

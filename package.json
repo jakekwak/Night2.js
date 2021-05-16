@@ -6,7 +6,7 @@
   "scripts": {
     "build": "webpack --env dev && webpack --env build",
     "dev": "webpack --progress --colors --watch --env dev",
-    "serve": "http-server",
+    "serve": "live-server ./test",
     "repl": "node -i -e \"$(< ./lib/darkmode-js.js)\"",
     "prettier:app": "prettier --write src test && eslint --fix --ext .js",
     "lint": "eslint --fix --ext .js"
@@ -50,11 +50,11 @@
     "eslint": "7.10.0",
     "eslint-config-prettier": "6.0.0",
     "eslint-loader": "^2.0.0",
-    "http-server": "^0.11.1",
     "husky": "^4.2.3",
     "jsdom": "11.11.0",
     "jsdom-global": "3.0.2",
     "lint-staged": "^10.0.8",
+    "live-server": "^1.2.1",
     "mocha": "^4.0.1",
     "nyc": "^14.1.1",
     "prettier": "2.1.2",

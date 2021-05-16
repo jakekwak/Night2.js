@@ -20,10 +20,7 @@ export default class Night2 {
 
     if (!localStorage.time) {
       localStorage.setItem('time', JSON.stringify(midnight));
-    } else if (
-      localStorage.location &&
-      now.getTime() > JSON.parse(localStorage.time)
-    ) {
+    } else if (localStorage.location && now.getTime() > JSON.parse(localStorage.time)) {
       localStorage.removeItem('time');
 
       if (this.settings.cacheClear) {
@@ -71,7 +68,7 @@ export default class Night2 {
     if (this.settings.cache) {
       localStorage.setItem('location', JSON.stringify(location));
     }
-  };
+  }
 
   error(err) {
     if (typeof this.settings.onDenied === 'function') {
@@ -83,7 +80,7 @@ export default class Night2 {
         detail: err
       })
     );
-  };
+  }
 
   checkSunPosition(latitude, longitude) {
     /* eslint-disable */
@@ -110,9 +107,7 @@ export default class Night2 {
       if (localStorage.auto && JSON.parse(localStorage.auto)) {
         const now = new Date();
 
-        now.getTime() > sunrise && now.getTime() < sunset ?
-          this.light() :
-          this.dark();
+        now.getTime() > sunrise && now.getTime() < sunset ? this.light() : this.dark();
       }
     }, 100);
   }
@@ -129,10 +124,10 @@ export default class Night2 {
     this.isDark = false;
 
     if (this.settings.lightClass) {
-      document.body.classList.add(this.settings.lightClass);
+      document.getElementById(this.settings.divId).classList.add(this.settings.lightClass);
     }
 
-    document.body.classList.remove(this.settings.darkClass);
+    document.getElementById(this.settings.divId).classList.remove(this.settings.darkClass);
 
     localStorage.setItem('dark', 'false');
   }
@@ -143,10 +138,10 @@ export default class Night2 {
     this.isDark = true;
 
     if (this.settings.lightClass) {
-      document.body.classList.remove(this.settings.lightClass);
+      document.getElementById(this.settings.divId).classList.remove(this.settings.lightClass);
     }
 
-    document.body.classList.add(this.settings.darkClass);
+    document.getElementById(this.settings.divId).classList.add(this.settings.darkClass);
 
     localStorage.setItem('dark', 'true');
   }
@@ -161,6 +156,7 @@ export default class Night2 {
 
   extendSettings(settings) {
     const defaultSettings = {
+      divId: 'darkmode',
       lightClass: '', // class added to body when dark mode is disabled
       darkClass: 'dark', // class added to body when dark mode is enabled
       cache: true, // cache location coordinates in local storage
@@ -178,7 +174,8 @@ export default class Night2 {
 
     const newSettings = {};
 
-    for (const property in defaultSettings) { // eslint-disable-line no-unused-vars
+    for (const property in defaultSettings) {
+      // eslint-disable-line no-unused-vars
       if (property in settings) newSettings[property] = settings[property];
       else newSettings[property] = defaultSettings[property];
     }

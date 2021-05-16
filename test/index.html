@@ -16,7 +16,7 @@
   </head>
   <body>
     <main>
-      <div class="container">
+      <div id="myDarkmode" class="container">
         <h1>다크모드 테스트</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore
@@ -38,6 +38,7 @@
     <script src="./night2.min.js"></script>
     <script>
       const night = new Night2({
+        divId: 'myDarkmode',
         lightClass: '',
         darkClass: 'dark',
         auto: true,

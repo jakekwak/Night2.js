@@ -5,22 +5,22 @@ import SunCalc from 'suncalc';
 export default class Night2 {
   constructor(settings = {}) {
     this.settings = this.extendSettings(settings);
-    console.log('constructor auto = ', localStorage.auto);
-    console.log('constructor dark = ', localStorage.dark);
-    console.log('constructor light = ', localStorage.light);
+    // console.log('constructor auto = ', localStorage.auto);
+    // console.log('constructor dark = ', localStorage.dark);
+    // console.log('constructor light = ', localStorage.light);
 
     this.today = new Date();
 
     this.time(this.today); // 바로 시작하고,  인터벌로 60분마다.
 
-    setInterval(() => this.time(new Date()), this.settings.intervalForTime);
+    setInterval(() => this.time(new Date()), this.settings.intervalForTime * 1000 * 60);
 
     if (this.settings.auto) this.auto(true); // 시작시 auto를 부름.. 여기서
     this.theme();
   }
 
   time(now) {
-    console.log('time now = ', now);
+    // console.log('time now = ', now);
     const midnight = new Date().setHours(24, 0, 0, 0);
 
     if (!localStorage.time) {
@@ -43,15 +43,15 @@ export default class Night2 {
   }
 
   theme() {
-    console.log('theme dark?', localStorage.dark);
+    // console.log('theme dark?', localStorage.dark);
     return localStorage.dark === 'true' ? this.dark() : this.light();
   }
 
   auto(init) {
-    console.log('auto(init)', init);
+    // console.log('auto(init)', init);
     // if (this.settings.auto) return; // 이미 auto가 true이면 2개의 interval이 돌고 있음
     if ((init && !localStorage.auto) || !init) {
-      console.log('set auto true', init);
+      // console.log('set auto true', init);
       localStorage.setItem('auto', 'true');
 
       // setInterval(() => this.time(new Date()), this.settings.intervalForTime); // 매뉴얼 오토시 필요?
@@ -65,25 +65,25 @@ export default class Night2 {
 
   myLocation() {
     if (!localStorage.location) {
-      console.log('myLocation localStorage.location', localStorage.location);
+      // console.log('myLocation localStorage.location', localStorage.location);
       navigator.geolocation.getCurrentPosition(this.success.bind(this), this.error.bind(this));
     } else {
       const location = JSON.parse(localStorage.location);
 
-      console.log('myLocation location', location);
+      // console.log('myLocation location', location);
 
       this.checkSunPosition(location.latitude, location.longitude);
     }
   }
 
   success(pos) {
-    console.log('success');
+    // console.log('success');
     const location = {
       latitude: pos.coords.latitude,
       longitude: pos.coords.longitude
     };
 
-    console.log('location', location);
+    // console.log('location', location);
 
     this.checkSunPosition(location.latitude, location.longitude);
 
@@ -93,7 +93,7 @@ export default class Night2 {
   }
 
   error(err) {
-    console.log('error');
+    // console.log('error');
     if (typeof this.settings.onDenied === 'function') {
       this.settings.onDenied();
     }
@@ -121,7 +121,7 @@ export default class Night2 {
       longitude
     };
 
-    console.log('checkSunPosition values', values);
+    // console.log('checkSunPosition values', values);
 
     document.dispatchEvent(
       new CustomEvent('smartDark', {
@@ -131,25 +131,25 @@ export default class Night2 {
 
     // 시작시 한번 실행하고,  다음에 인터벌
     if (localStorage.auto && JSON.parse(localStorage.auto)) {
-      console.log('시작시 한번 실행하고,  다음에 인터벌');
+      // console.log('시작시 한번 실행하고,  다음에 인터벌');
       const now = new Date();
 
       now.getTime() > sunrise && now.getTime() < sunset ? this.light() : this.dark();
     }
 
     this.intervalForCheckSunPosition = setInterval(() => {
-      console.log('interval localStorage.auto', localStorage.auto);
+      // console.log('interval localStorage.auto', localStorage.auto);
       if (localStorage.auto && JSON.parse(localStorage.auto)) {
-        console.log('선 포지션 체크함');
+        // console.log('선 포지션 체크함');
         const now = new Date();
 
         now.getTime() > sunrise && now.getTime() < sunset ? this.light() : this.dark();
       }
-    }, this.settings.intervalForCheckSun); // 원래 값이 100 너무 자주 체크??
+    }, this.settings.intervalForCheckSun * 1000 * 60); // 원래 값이 100 너무 자주 체크??
   }
 
   reset() {
-    console.log('reset');
+    // console.log('reset');
     localStorage.clear();
     clearInterval(this.intervalForCheckSunPosition);
 
@@ -157,11 +157,11 @@ export default class Night2 {
   }
 
   light() {
-    console.log('light mode');
-    console.log('    localStorage.auto', localStorage.auto);
-    console.log('    localStorage.dark', localStorage.dark);
-    console.log('    localStorage.time', localStorage.time);
-    console.log('    localStorage.location', localStorage.location);
+    // console.log('light mode');
+    // console.log('    localStorage.auto', localStorage.auto);
+    // console.log('    localStorage.dark', localStorage.dark);
+    // console.log('    localStorage.time', localStorage.time);
+    // console.log('    localStorage.location', localStorage.location);
     if (typeof this.settings.onLight === 'function') this.settings.onLight();
 
     this.isDark = false;
@@ -179,11 +179,11 @@ export default class Night2 {
   }
 
   dark() {
-    console.log('dark mode');
-    console.log('    localStorage.auto', localStorage.auto);
-    console.log('    localStorage.dark', localStorage.dark);
-    console.log('    localStorage.time', localStorage.time);
-    console.log('    localStorage.location', localStorage.location);
+    // console.log('dark mode');
+    // console.log('    localStorage.auto', localStorage.auto);
+    // console.log('    localStorage.dark', localStorage.dark);
+    // console.log('    localStorage.time', localStorage.time);
+    // console.log('    localStorage.location', localStorage.location);
     if (typeof this.settings.onDark === 'function') this.settings.onDark();
 
     this.isDark = true;
@@ -201,7 +201,7 @@ export default class Night2 {
   }
 
   toggle() {
-    console.log('toggle');
+    // console.log('toggle');
     if (typeof this.settings.onToggle === 'function') this.settings.onToggle();
 
     this.isDark ? this.light() : this.dark();
@@ -217,8 +217,8 @@ export default class Night2 {
       cache: true, // cache location coordinates in local storage
       cacheClear: true, // clear location coordinates in local storage everyday at midnight
       auto: true, // enable smart switch on script init
-      intervalForCheckSun: 1000 * 60 * 10, // 10분 마다 체크
-      intervalForTime: 1000 * 60 * 60, // 1시간마다 체크
+      intervalForCheckSun: 10, // 10분 마다 체크
+      intervalForTime: 60, // 60분마다 체크
       offset: 30, // 선라이즈+30분, 선셋-30분
 
       onAuto: null, // callback on smart switch
@@ -232,8 +232,9 @@ export default class Night2 {
 
     const newSettings = {};
 
+    /* eslint-disable */
     for (const property in defaultSettings) {
-      // eslint-disable-line no-unused-vars
+      /* eslint-enable */
       if (property in settings) newSettings[property] = settings[property];
       else newSettings[property] = defaultSettings[property];
     }

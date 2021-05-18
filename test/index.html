@@ -18,16 +18,13 @@
     <main>
       <div id="myDarkmode" class="container">
         <h1>다크모드 테스트</h1>
-        <p>
-          스크립트에서 <code>auto: true</code>로 설정하면 자동으로 변경됩니다. 2개의 setInterval이 1000ms로
-          돌면서 시간과 로케이션을 체크합니다.
-        </p>
-        <p> 강제로 <strong>다크모드/라이트모드</strong>로 변경했을 때에 동작이 되어야 되고. </p>
-        <p>
-          <code>auto: false</code>로 설정한 상태에서 <code>auto()</code>를 불렀을 때 제대로 동작해야 되고
-        </p>
+        <p>   Auto: true로 하고 </p>
+        <p>   Toggle() 버튼 : 강제로 모드를 변경함. Auto: False로 함. </p>
+        <p>   Auto() 버튼 : 다시 Auto모드로 변경함. </p>
+        <p>   Time Interval은 1시간, sun 체크 interval은 20분, 오프셋은 30분로 세팅하면, </p>
+        <p>   최소 10분전, 최대 30분전후로 자동으로 변경됨. </p>
         <p>여러가지 체크할 부분이 많이 있습니다.</p>
-        <p>테스트후에 이슈는 이슈에 개선사항을 깃헙 dev 브랜치에 올려주세요</p>
+        <p>테스트후에 이슈는 이슈에, 개선사항을 깃헙 dev 브랜치에 풀 리퀘스트해주세요</p>
         <button onClick="night.toggle()">Toggle</button>
         <button onClick="night.auto(false)">Auto</button>
       </div>
@@ -39,14 +36,14 @@
         lightClass: 'light',
         darkClass: 'dark',
         auto: true,
-        intervalForCheckSun: 1000 * 60 * 1, // 20분마다 체크
-        intervalForTime: 1000 * 60 * 60, // 2시간마다 체크
-        offset: 300,
+        intervalForCheckSun: 5, // 5분마다 체크
+        intervalForTime: 60, // 60분마다 체크
+        offset: 30, // 분
         onToggle() {
-          console.log('onToggle');
+          // console.log('onToggle');
         },
         onAuto() {
-          console.log('onAuto');
+          // console.log('onAuto');
         },
         onLight() {},
         onDark() {}

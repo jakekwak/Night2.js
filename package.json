@@ -5,7 +5,7 @@
   "main": "lib/night2.js",
   "scripts": {
     "build": "webpack --env dev && webpack --env build",
-    "dev": "webpack --progress --colors --watch --env dev",
+    "dev": "yarn build && yarn serve",
     "serve": "live-server ./test",
     "repl": "node -i -e \"$(< ./lib/darkmode-js.js)\"",
     "prettier:app": "prettier --write src test && eslint --fix --ext .js",

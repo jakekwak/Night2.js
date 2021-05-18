@@ -29,31 +29,27 @@
         <p>여러가지 체크할 부분이 많이 있습니다.</p>
         <p>테스트후에 이슈는 이슈에 개선사항을 깃헙 dev 브랜치에 올려주세요</p>
         <button onClick="night.toggle()">Toggle</button>
-        <button onClick="night.dark()">Dark</button>
-        <button onClick="night.light()">Light</button>
-        <button onClick="night.auto()">Auto</button>
-        <button onClick="night.reset()">Reset</button>
+        <button onClick="night.auto(false)">Auto</button>
       </div>
     </main>
-    <script src="./night2.min.js"></script>
+    <script src="./night2.js"></script>
     <script>
       const night = new Night2({
         divId: 'myDarkmode',
-        lightClass: '',
+        lightClass: 'light',
         darkClass: 'dark',
         auto: true,
+        intervalForCheckSun: 1000 * 60 * 1, // 20분마다 체크
+        intervalForTime: 1000 * 60 * 60, // 2시간마다 체크
+        offset: 300,
         onToggle() {
           console.log('onToggle');
         },
         onAuto() {
           console.log('onAuto');
         },
-        onLight() {
-          console.log('onLight');
-        },
-        onDark() {
-          console.log('onDark');
-        }
+        onLight() {},
+        onDark() {}
       });
     </script>
   </body>

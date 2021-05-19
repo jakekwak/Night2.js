@@ -202,9 +202,9 @@ export default class Night2 {
 
   toggle() {
     // console.log('toggle');
-    if (typeof this.settings.onToggle === 'function') this.settings.onToggle();
-
     this.isDark ? this.light() : this.dark();
+
+    if (typeof this.settings.onToggle === 'function') this.settings.onToggle(this.isDark);
 
     localStorage.setItem('auto', 'false'); // Auto 모드 Off
   }

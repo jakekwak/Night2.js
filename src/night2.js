@@ -121,7 +121,7 @@ export default class Night2 {
       longitude
     };
 
-    console.log('checkSunPosition values', values);
+    // console.log('checkSunPosition values', values);
 
     document.dispatchEvent(
       new CustomEvent('smartDark', {
@@ -183,12 +183,12 @@ export default class Night2 {
     this.isDark = false;
 
     if (this.settings.lightClass) {
-      // document.body.classList.add(this.settings.lightClass);
-      document.getElementById(this.settings.divId).classList.add(this.settings.lightClass);
+      document.body.classList.add(this.settings.lightClass);
+      // document.getElementById(this.settings.divId).classList.add(this.settings.lightClass);
     }
 
-    // document.body.classList.remove(this.settings.darkClass);
-    document.getElementById(this.settings.divId).classList.remove(this.settings.darkClass);
+    document.body.classList.remove(this.settings.darkClass);
+    // document.getElementById(this.settings.divId).classList.remove(this.settings.darkClass);
 
     localStorage.setItem('dark', 'false');
     // localStorage.setItem('auto', 'false'); // Auto 모드 Off
@@ -205,12 +205,12 @@ export default class Night2 {
     this.isDark = true;
 
     if (this.settings.lightClass) {
-      // document.body.classList.remove(this.settings.lightClass);
-      document.getElementById(this.settings.divId).classList.remove(this.settings.lightClass);
+      document.body.classList.remove(this.settings.lightClass);
+      // document.getElementById(this.settings.divId).classList.remove(this.settings.lightClass);
     }
 
-    // document.body.classList.add(this.settings.darkClass);
-    document.getElementById(this.settings.divId).classList.add(this.settings.darkClass);
+    document.body.classList.add(this.settings.darkClass);
+    // document.getElementById(this.settings.divId).classList.add(this.settings.darkClass);
 
     localStorage.setItem('dark', 'true');
     // localStorage.setItem('auto', 'false'); // Auto 모드 Off
@@ -227,7 +227,7 @@ export default class Night2 {
 
   extendSettings(settings) {
     const defaultSettings = {
-      divId: 'default',
+      // divId: 'default',
       lightClass: '', // class added to body when dark mode is disabled
       darkClass: 'dark', // class added to body when dark mode is enabled
       cache: true, // cache location coordinates in local storage

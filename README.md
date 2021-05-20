@@ -69,6 +69,7 @@ Name | Type | Default | Description | Available options
 **onLight** | function | `null` | Callback when dark mode is disabled | `() => { // code }`
 **onDark** | function | `null` | Callback when dark mode is enabled | `() => { // code }`
 **onToggle** | function | `null` | Callback on dark/light mode toggle | `(darkmode) => { // code }`
+**onChange** | function | `null` | Callback on checkSunPosition 인터발에서 불러즘 | `(darkmode) => { // code }`
 **onDenied** | function | `null` | Callback on geolocation permission denied | `() => { // code }`
 **onCacheClear** | function | `null` | Callback when location coordinates and midnight time in local storage cleared | `() => { // code }`
 **onReset** | function | `null` | Callback on localStorage reset | `() => { // code }`

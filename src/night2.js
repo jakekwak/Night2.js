@@ -121,7 +121,7 @@ export default class Night2 {
       longitude
     };
 
-    // console.log('checkSunPosition values', values);
+    console.log('checkSunPosition values', values);
 
     document.dispatchEvent(
       new CustomEvent('smartDark', {
@@ -134,7 +134,15 @@ export default class Night2 {
       // console.log('시작시 한번 실행하고,  다음에 인터벌');
       const now = new Date();
 
+      const state = this.isDark;
+
       now.getTime() > sunrise && now.getTime() < sunset ? this.light() : this.dark();
+
+      if (state !== this.isDark) {
+        if (typeof this.settings.onChange === 'function') {
+          this.settings.onChange(this.isDark);
+        }
+      }
     }
 
     this.intervalForCheckSunPosition = setInterval(() => {
@@ -143,7 +151,15 @@ export default class Night2 {
         // console.log('선 포지션 체크함');
         const now = new Date();
 
+        const state = this.isDark;
+
         now.getTime() > sunrise && now.getTime() < sunset ? this.light() : this.dark();
+
+        if (state !== this.isDark) {
+          if (typeof this.settings.onChange === 'function') {
+            this.settings.onChange(this.isDark);
+          }
+        }
       }
     }, this.settings.intervalForCheckSun * 1000 * 60); // 원래 값이 100 너무 자주 체크??
   }
@@ -225,6 +241,7 @@ export default class Night2 {
       onLight: null, // callback when dark mode is disabled
       onDark: null, // callback when dark mode is enabled
       onToggle: null, // callback on dark/light mode toggle
+      onChange: null, // callback on 인터발에서 불러주는 펑션
       onDenied: null, // callback on geolocation permission deined
       onCacheClear: null, // callback when location coordinates and midnight time in local storage cleared
       onReset: null // callback on localStorage reset
